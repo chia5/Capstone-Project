@@ -26,7 +26,11 @@ pipeline {
         }
         stage("Push to Production"){
             steps{
+<<<<<<< HEAD
               sh 'docker run -d --name apache -p 80:80'
+=======
+              sh 'docker run -d --name apache -p 80:80 chash07/capstone-project1:V$BUILD_NUMBER'
+>>>>>>> 3636171aa220d425720b9160c035b69f0aa16b63
             }
         }
     }
