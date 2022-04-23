@@ -1,4 +1,4 @@
-pipeline{
+pipeline {
     agent { label 'Prod'}
     environment {
         registry = "chash07/capstone-project1"
@@ -10,11 +10,12 @@ pipeline{
                 checkout([$class: 'GitSCM', branches: [[name: '*/prod']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/chia5/Capstone-Project.git']]])
             }
         }
-        
+
         stage("Build Website"){
             steps{
-                sh docker.build registry + ":V$BUILD_NUMBER"
-
+                script {
+                    docker.build registry + ":V$BUILD_NUMBER"
+                }
             }
         }
     
@@ -26,7 +27,7 @@ pipeline{
 
         stage("Push to Production"){
             steps{
-              sh "docker run -d --name apache -p 80:80"
+              sh 'docker run -d --name apache -p 80:80'
             }
         }
     }
