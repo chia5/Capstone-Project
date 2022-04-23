@@ -6,6 +6,9 @@
   - name: Update Packages
     shell: 'apt update'
 
+  - name: Install Pre-req
+    shell: 'apt install openjdk-8-jdk -y && apt install docker.io -y '
+
   - name: Create Dir /home/ubuntu/config-management
     shell: mkdir /home/ubuntu/config-management
     ignore_errors: true
@@ -28,6 +31,8 @@
   tasks:
   - name: Update Packages
     shell: 'apt update'
+  - name: Install Pre-req
+    shell: 'apt install openjdk-8-jdk -y && apt install docker.io -y'
 
   - name: Create dit /home/ubuntu/config-management
     shell: mkdir /home/ubuntu/config-management
