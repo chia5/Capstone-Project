@@ -24,7 +24,6 @@ pipeline {
                 echo "Test Successfull"
             }
         }
-
         stage("Push to Production"){
             steps{
               sh 'docker run -d --name apache -p 80:80'
