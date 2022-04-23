@@ -27,7 +27,7 @@ pipeline {
         stage("Push to Production"){
             steps{
               sh 'docker rm -f apache'
-              sh 'docker rmi chash07/capstone-project1:V$BUILD_NUMBER'
+              
               sh 'docker run -d --name apache -p 80:80 chash07/capstone-project1:V$BUILD_NUMBER'
             }
         }
