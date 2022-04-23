@@ -1,0 +1,46 @@
+---
+- name: Install Apache on Prod Server
+  hosts: Prod
+  become: yes
+  tasks:
+  - name: Update Packages
+    shell: 'apt update'
+
+  - name: Create Dir /home/ubuntu/config-management
+    shell: mkdir /home/ubuntu/config-management
+    ignore_errors: true
+
+  - name: Check if Apache is installed
+    shell: dpkg -l git
+    register: command_output1
+    ignore_errors: true
+
+  - debug: var=command_output1
+  - shell: echo 'Apache is Installed on this System' > /home/ubuntu/config-management/status.txt
+    when: command_output1.rc == 0
+
+  - shell: git --version > /home/ubuntu/config-management/status.txt
+    when: command_output1.rc != 0
+
+- name: Install Apache on Prod Server
+  hosts: Test
+  become: yes
+  tasks:
+  - name: Update Packages
+    shell: 'apt update'
+
+  - name: Create dit /home/ubuntu/config-management
+    shell: mkdir /home/ubuntu/config-management
+    ignore_errors: true
+
+  - name: Check if Apache is installed
+    shell: dpkg -l git
+    register: command_output2
+    ignore_errors: true
+
+  - debug: var=command_output2
+  - shell: echo 'Apache is Installed on this System' > /home/ubuntu/config-management/status.txt
+    when: command_output2.rc == 0
+
+  - shell: git --version > /home/ubuntu/config-management/status.txt
+    when: command_output2.rc != 0
