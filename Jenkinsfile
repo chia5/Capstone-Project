@@ -2,6 +2,7 @@ pipeline{
     agent { label 'Prod'}
     environment {
         registry = "chash07/Capstone-project1"
+    }
 
     stages{
         stage("Build Website"){
