@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'Prod'}
+    agent { label 'Dev'}
     environment {
         registry = "chash07/capstone-project1"
     }
@@ -7,7 +7,7 @@ pipeline {
 
         stage("Clone"){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/prod']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/chia5/Capstone-Project.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/chia5/Capstone-Project.git']]])
             }
         }
 
@@ -24,14 +24,6 @@ pipeline {
                 echo "Test Successfull"
             }
         }
-        stage("Push to Production"){
-            steps{
-<<<<<<< HEAD
-              sh 'docker run -d --name apache -p 80:80'
-=======
-              sh 'docker run -d --name apache -p 80:80 chash07/capstone-project1:V$BUILD_NUMBER'
->>>>>>> 3636171aa220d425720b9160c035b69f0aa16b63
-            }
-        }
+        
     }
 }
